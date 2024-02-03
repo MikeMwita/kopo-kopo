@@ -16,13 +16,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/ping", handler)
-	http.HandleFunc("/transactions", handlers.CreateTransactionHandler)
-	http.HandleFunc("/transactions/{transaction_id}", handlers.GetTransactionByIDHandler)
-	http.HandleFunc("/accounts/{account_id}", handlers.GetAccountHandler)
-	http.HandleFunc("/transactions", handlers.GetTransactionsHandler)
+	r := mux.NewRouter()
+	r.HandleFunc("/ping", handler)
+	r.HandleFunc("/transactions", handlers.CreateTransactionHandler).Methods("POST")
+	r.HandleFunc("/transactions/{transaction_id}", handlers.GetTransactionByIDHandler).Methods("GET")
+	r.HandleFunc("/accounts/{account_id}", handlers.GetAccountHandler).Methods("GET")
+	r.HandleFunc("/transactions", handlers.GetTransactionsHandler).Methods("GET")
 
 	port := 8080
 	log.Printf("Server running on port %d...\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), r))
 }
