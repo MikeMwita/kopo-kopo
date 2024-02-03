@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/ffc1e12/kopo-kopo-transactionmanagementbackend/internal/handlers"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -15,11 +17,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/ping", handler)
-	http.HandleFunc("/ping", handlers.PingHandler)
 	http.HandleFunc("/transactions", handlers.CreateTransactionHandler)
 	http.HandleFunc("/transactions/{transaction_id}", handlers.GetTransactionByIDHandler)
 	http.HandleFunc("/accounts/{account_id}", handlers.GetAccountHandler)
 	http.HandleFunc("/transactions", handlers.GetTransactionsHandler)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	port := 8080
+	log.Printf("Server running on port %d...\n", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
