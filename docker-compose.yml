@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  sqlite:
+    image: nouchka/sqlite3
+    volumes:
+      - ./data:/data
+    ports:
+      - 8080:80
+    command: sqlite3 /data/database.db
