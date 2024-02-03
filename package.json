@@ -2,8 +2,8 @@
   "name": "account-management-backend-level-2",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo build your app here",
-    "start": "echo start your app here",
+    "build": "cd app && go build server.go",
+    "start": "./app/server",
     "test": "cypress run"
   },
   "devDependencies": {
