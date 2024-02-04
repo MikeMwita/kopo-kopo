@@ -199,4 +199,4 @@ paths:
         '400':
           description: account_id missing or has incorrect type.
         '404':
-          description: Account not found.
+          description: Account not found
