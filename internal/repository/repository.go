@@ -50,6 +50,7 @@ func CreateTransaction(transactionID, accountID string, amount int) error {
 	}
 
 	// Update account balance
+
 	_, err = db.Exec(`
 		INSERT INTO accounts (account_id, balance)
 		VALUES (?, ?)
@@ -64,6 +65,7 @@ func CreateTransaction(transactionID, accountID string, amount int) error {
 }
 
 // GetTransactions retrieves all transactions from the database
+
 func GetTransactions() ([]models.Transaction, error) {
 	rows, err := db.Query(`
 		SELECT transaction_id, account_id, amount, created_at
@@ -89,7 +91,7 @@ func GetTransactions() ([]models.Transaction, error) {
 	return transactions, nil
 }
 
-// GetTransactionByID retrieves a transaction by ID from the database
+// GetTransactionByID retrieves a transaction by ID from the databas
 func GetTransactionByID(transactionID string) (*models.Transaction, error) {
 	var t models.Transaction
 	err := db.QueryRow(`
