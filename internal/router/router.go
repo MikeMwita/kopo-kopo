@@ -5,7 +5,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// NewRouter creates a new router with defined routes
 func NewRouter() *mux.Router {
 	r := mux.NewRouter()
 	r.HandleFunc("/ping", handlers.HealthCheckHandler).Methods("GET")
